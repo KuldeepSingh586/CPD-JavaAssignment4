@@ -6,9 +6,6 @@
 package Servlets;
 
 import DataBaseConnection.Credentials;
-import static DataBaseConnection.Credentials.getConnection;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,14 +14,9 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import org.json.simple.JSONValue;
 
@@ -44,6 +36,15 @@ public class ProductServlets  {
         return result;
   
     }
+    @GET
+    @Path("{id}")
+    @Produces("application/json")
+    public String doGet(@PathParam("id")String id){
+      String result=getResults("SELECT * FROM product where ProductID");
+        return null;
+        
+    }
+    
     
     
 //
