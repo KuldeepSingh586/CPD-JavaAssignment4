@@ -48,7 +48,7 @@ public class Product {
     @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
-        String result = resultMethod("SELECT * FROM product where ProductID");
+        String result = resultMethod("SELECT * FROM product where ProductID=?",id);
         return result;
 
     }
