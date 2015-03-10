@@ -48,7 +48,7 @@ public class Product {
     @Path("{id}")
     @Produces("application/json")
     public String doGet(@PathParam("id") String id) {
-        String result = resultMethod("SELECT * FROM product where ProductID=?",id);
+        String result = resultMethod("SELECT * FROM product where ProductID=?", id);
         return result;
 
     }
@@ -82,6 +82,7 @@ public class Product {
         String getQuantity = map.get("quantity");
 
         doUpdate("INSERT INTO product (name,description,quantity) VALUES (?, ?, ?)", getName, getDesc, getQuantity);
+    
     }
 
     @PUT
@@ -104,7 +105,7 @@ public class Product {
                 case VALUE_NUMBER:
                     value = Integer.toString(jsonParserObj.getInt());
                     map.put(name, value);
-
+                     break;
             }
 
         }
@@ -112,15 +113,16 @@ public class Product {
         String getName = map.get("name");
         String getDesc = map.get("description");
         String getQuantity = map.get("quantity");
-        doUpdate("update product set ProductID = ?, name = ?, description = ?, quantity = ? where ProductID = ?", id, getName, getDesc, getQuantity);
+        doUpdate("update product set ProductID = ?, name = ?, description = ?, quantity = ? where ProductID = ?", id, getName, getDesc, getQuantity, id);
     }
 
     @DELETE
     @Path("{id}")
     @Consumes("application/json")
-     public void doDelete(@PathParam("id") String id, String strValue) {
-         doUpdate("DELETE FROM `product` WHERE `ProductID`=",id);
-     }
+    public void doDelete(@PathParam("id") String id, String strValue) {
+        doUpdate("DELETE FROM `product` WHERE `ProductID`=?", id);
+    }
+
     /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
      * name, description, quantity
