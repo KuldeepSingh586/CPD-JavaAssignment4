@@ -119,9 +119,9 @@ public class Product {
     @DELETE
     @Path("{id}")
     @Consumes("application/json")
-    public void doDelete(@PathParam("id") String id, String strValue) {
-        doUpdate("DELETE FROM `product` WHERE `ProductID`=?", id);
-    }
+     public void doDelete(@PathParam("id") String id, String strValue) {
+         doUpdate("DELETE FROM `product` WHERE `ProductID`=?",id);
+     }
 
     /**
      * resultMethod accepts two arguments It executes the Query get ProductID,
